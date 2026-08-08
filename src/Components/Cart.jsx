@@ -1,6 +1,11 @@
 import React from "react";
+import { useContext } from "react";
+import { CartContext } from "../Context/CartContext";
 
-function Cart({ cart, increaseQuantity, decreaseQuantity }) {
+function Cart() {
+  const { cart, increaseQuantity, decreaseQuantity, setShowPayment } =
+    useContext(CartContext);
+
   const totalAmount = cart.reduce((total, shoe) => {
     return total + shoe.price * shoe.quantity;
   }, 0);
@@ -53,7 +58,12 @@ function Cart({ cart, increaseQuantity, decreaseQuantity }) {
         </div>
       </div>
 
-      <button className="w-full bg-black text-white py-4 rounded-2xl mt-6 hover:bg-orange-500 duration-300  text-center">
+      <button
+        onClick={() => {
+          setShowPayment(true);
+        }}
+        className="w-full bg-black text-white py-4 rounded-2xl mt-6 hover:bg-orange-500 duration-300  text-center"
+      >
         Checkout
       </button>
     </div>

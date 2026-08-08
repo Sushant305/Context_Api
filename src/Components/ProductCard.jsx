@@ -1,6 +1,11 @@
 import React from "react";
+import { useContext } from "react";
+import { CartContext } from "../Context/CartContext";
 
-function ProductCard({ shoe , addToCart}) {
+function ProductCard({ shoe }) {
+
+  const {addToCart} = useContext(CartContext)
+
   return (
     <div className="bg-[#F8F4EF] rounded-3xl shadow-md hover:shadow-2xl transition-all duration-300 overflow-hidden ">
       <div className="flex justify-center items-center h-60 bg-[#EFE8DF]">
