@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { CartContext } from "../Context/CartContext";
 
 const Payment = () => {
-  const { cart } = useContext(CartContext);
+  const { cart ,setShowPayment } = useContext(CartContext);
   const totalAmount = cart.reduce((total, shoe) => {
     return total + shoe.price * shoe.quantity;
   }, 0);
@@ -10,7 +10,11 @@ const Payment = () => {
   const [payMethod, setPayMethod] = useState("");
 
   return (
-    <div className="min-h-screen bg-gray-100 p-10">
+    <div className="min-h-screen bg-gray-100 p-10 mt-20">
+        
+          <button className="mb-6 px-5 py-3 bg-orange-400 rounded-3xl hover:bg-orange-700 transition font-bold text-white" onClick={()=>{setShowPayment(false)}}> Back to DashBoard</button>
+
+
       <h1 className="text=4xl font-bold text-center mb-10"> Payment</h1>
 
       <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-8">
@@ -64,8 +68,33 @@ const Payment = () => {
             />
             <span className="ml-3">Credit / Debit Card </span>
           </label>
+          {payMethod === "card" && (
+            <div className="flex flex-col gap-4">
+              <input
+                type="text"
+                placeholder="Card Number"
+                className="border p-4 rounded-xl"
+              />
+
+              <div className="flex gap-4">
+                <input
+                  type="text"
+                  placeholder="Expiry Date"
+                  className="border p-4 rounded-xl w-1/2"
+                />
+
+                <input
+                  type="text"
+                  placeholder="CVV"
+                  className="border p-4 rounded-xl w-1/2"
+                />
+              </div>
+            </div>
+          )}
         </div>
       </div>
+
+
     </div>
   );
 };
