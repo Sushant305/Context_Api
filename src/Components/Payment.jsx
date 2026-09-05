@@ -1,12 +1,11 @@
 import React, { useContext, useState } from "react";
 import { CartContext } from "../Context/CartContext";
-import {useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Payment = () => {
+  const navigate = useNavigate();
 
-  const navigate = useNavigate()
-
-  const { cart  } = useContext(CartContext);
+  const { cart } = useContext(CartContext);
   const totalAmount = cart.reduce((total, shoe) => {
     return total + shoe.price * shoe.quantity;
   }, 0);
@@ -15,15 +14,14 @@ const Payment = () => {
 
   return (
     <div className="min-h-screen bg-gray-100 p-10 mt-20">
-        
-          <button 
-            className="mb-6 px-5 py-3 bg-orange-400 rounded-3xl hover:bg-orange-700 transition font-bold text-white" 
-            onClick={()=>Navigate('/')}>
-            Back to DashBoard
-          </button>
+      <button
+        className="mb-6 px-5 py-3 bg-orange-400 rounded-3xl hover:bg-orange-700 transition font-bold text-white"
+        onClick={() => navigate("/")}
+      >
+        Back to DashBoard
+      </button>
 
-
-      <h1 className="text=4xl font-bold text-center mb-10"> Payment</h1>
+      <h1 className="text-4xl font-bold text-center mb-10"> Payment</h1>
 
       <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-8">
         <div className="bg-white rounded-2xl p-6 shadow">
@@ -101,8 +99,6 @@ const Payment = () => {
           )}
         </div>
       </div>
-
-
     </div>
   );
 };
