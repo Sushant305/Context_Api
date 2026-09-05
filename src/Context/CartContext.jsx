@@ -4,7 +4,7 @@ export const CartContext = createContext();
 
 export function CartProvider({ children }) {
   const [cart, setCart] = useState([]);
-  const [showPayment, setShowPayment] = useState(false);
+  
 
   const addToCart = (shoe) => {
     const existingShoe = cart.find((item) => item.id === shoe.id);
@@ -66,8 +66,6 @@ export function CartProvider({ children }) {
         addToCart,
         increaseQuantity,
         decreaseQuantity,
-        showPayment,
-        setShowPayment,
       }}
     >
       {children}

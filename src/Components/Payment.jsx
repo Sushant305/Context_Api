@@ -1,8 +1,12 @@
 import React, { useContext, useState } from "react";
 import { CartContext } from "../Context/CartContext";
+import {useNavigate } from "react-router-dom";
 
 const Payment = () => {
-  const { cart ,setShowPayment } = useContext(CartContext);
+
+  const navigate = useNavigate()
+
+  const { cart  } = useContext(CartContext);
   const totalAmount = cart.reduce((total, shoe) => {
     return total + shoe.price * shoe.quantity;
   }, 0);
@@ -12,7 +16,11 @@ const Payment = () => {
   return (
     <div className="min-h-screen bg-gray-100 p-10 mt-20">
         
-          <button className="mb-6 px-5 py-3 bg-orange-400 rounded-3xl hover:bg-orange-700 transition font-bold text-white" onClick={()=>{setShowPayment(false)}}> Back to DashBoard</button>
+          <button 
+            className="mb-6 px-5 py-3 bg-orange-400 rounded-3xl hover:bg-orange-700 transition font-bold text-white" 
+            onClick={()=>Navigate('/')}>
+            Back to DashBoard
+          </button>
 
 
       <h1 className="text=4xl font-bold text-center mb-10"> Payment</h1>
